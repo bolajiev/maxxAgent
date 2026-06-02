@@ -7,7 +7,7 @@ MaxxAgentFramework is a modular Python library for building **stateful, tool-usi
 ## Package map
 
 ```text
-maxxa_agent/
+maxx_agent/
 ├── core/           # Agent loop, tools, memory, config
 ├── backends/       # LLM client implementations
 ├── multi_agent/    # Crew, Task, Orchestrator
@@ -67,7 +67,7 @@ flowchart TB
 
 ## ReAct reasoning loop (Implemented)
 
-The `Agent` in `maxxa_agent/core/agent.py` implements a **tag-based ReAct loop**:
+The `Agent` in `maxx_agent/core/agent.py` implements a **tag-based ReAct loop**:
 
 1. Append the user message to memory.
 2. Build a plain-text prompt: system prompt + memory blocks + user query + format instructions.

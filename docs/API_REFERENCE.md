@@ -6,7 +6,7 @@ This reference documents the public API for **MaxxAgentFramework v0.1.0**. Types
 
 ---
 
-## `maxxa_agent.core.agent`
+## `maxx_agent.core.agent`
 
 ### `Agent`
 
@@ -33,10 +33,10 @@ Agent(
 **Example:**
 
 ```python
-from maxxa_agent.core.agent import Agent
-from maxxa_agent.core.config import AgentConfig
-from maxxa_agent.core.tools import ToolRegistry
-from maxxa_agent.backends.llm_client import CustomEndpointClient
+from maxx_agent.core.agent import Agent
+from maxx_agent.core.config import AgentConfig
+from maxx_agent.core.tools import ToolRegistry
+from maxx_agent.backends.llm_client import CustomEndpointClient
 
 agent = Agent(
     llm=CustomEndpointClient(endpoint_url="http://localhost:8080/generate"),
@@ -82,7 +82,7 @@ class RunTrace:
 
 ---
 
-## `maxxa_agent.core.tools`
+## `maxx_agent.core.tools`
 
 ### `ToolSpec`
 
@@ -159,7 +159,7 @@ Registers: `read_url`, `web_search`, `file_ops`, `code_execution`.
 
 ---
 
-## `maxxa_agent.core.memory`
+## `maxx_agent.core.memory`
 
 ### `Message`
 
@@ -196,7 +196,7 @@ ConversationMemory(
 
 ---
 
-## `maxxa_agent.core.config`
+## `maxx_agent.core.config`
 
 ### `AgentConfig`
 
@@ -240,7 +240,7 @@ Metadata only; does not auto-create clients.
 
 ---
 
-## `maxxa_agent.backends.llm_client`
+## `maxx_agent.backends.llm_client`
 
 ### `LLMClient` (Protocol)
 
@@ -293,7 +293,7 @@ Raised on HTTP/provider failures.
 
 ---
 
-## `maxxa_agent.multi_agent`
+## `maxx_agent.multi_agent`
 
 ### `Task`
 
@@ -372,7 +372,7 @@ Returns `OrchestrationResult(results, aggregated_output, mode)`.
 
 ---
 
-## `maxxa_agent.rag`
+## `maxx_agent.rag`
 
 ### `Document` / `DocumentChunk`
 
@@ -412,7 +412,7 @@ Default deterministic embedder (`dim=256`) and in-memory cosine search.
 
 ---
 
-## `maxxa_agent.execution.sandbox`
+## `maxx_agent.execution.sandbox`
 
 ### `SandboxedPythonExecutor`
 
@@ -442,7 +442,7 @@ class ExecutionResult:
 
 ---
 
-## `maxxa_agent.tools.advanced_tools`
+## `maxx_agent.tools.advanced_tools`
 
 ### `register_advanced_tools`
 

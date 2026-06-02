@@ -45,11 +45,11 @@ Edit `.env` and set `MAXX_LLM_ENDPOINT_URL` to your server.
 Use environment variables (no hardcoded URLs in code):
 
 ```python
-from maxxa_agent.backends.llm_client import CustomEndpointClient
-from maxxa_agent.core.agent import Agent
-from maxxa_agent.core.config import AgentConfig
-from maxxa_agent.core.tools import ToolRegistry
-from maxxa_agent.settings import (
+from maxx_agent.backends.llm_client import CustomEndpointClient
+from maxx_agent.core.agent import Agent
+from maxx_agent.core.config import AgentConfig
+from maxx_agent.core.tools import ToolRegistry
+from maxx_agent.settings import (
     load_env_file,
     llm_auth_headers,
     llm_endpoint_url,
@@ -95,7 +95,7 @@ python examples/multi_agent_example.py
 Tools are functions that return `ToolResult` and declare a JSON Schema for arguments.
 
 ```python
-from maxxa_agent.core.tools import ToolRegistry, ToolSpec, ToolResult
+from maxx_agent.core.tools import ToolRegistry, ToolSpec, ToolResult
 
 def greet(args: dict) -> ToolResult:
     name = args["name"]
@@ -132,7 +132,7 @@ Update `AgentConfig.system_prompt` if your model needs stronger format instructi
 ### Custom HTTP (Maxx or any server)
 
 ```python
-from maxxa_agent.backends.llm_client import CustomEndpointClient
+from maxx_agent.backends.llm_client import CustomEndpointClient
 
 llm = CustomEndpointClient(
     endpoint_url="https://your-server/v1/generate",
@@ -143,7 +143,7 @@ llm = CustomEndpointClient(
 ### Hugging Face Inference
 
 ```python
-from maxxa_agent.backends.llm_client import HFInferenceClient
+from maxx_agent.backends.llm_client import HFInferenceClient
 
 llm = HFInferenceClient(
     model_id="meta-llama/Llama-3.2-3B-Instruct",
@@ -158,7 +158,7 @@ pip install -e ".[openai]"
 ```
 
 ```python
-from maxxa_agent.backends.llm_client import OpenAIClient
+from maxx_agent.backends.llm_client import OpenAIClient
 
 llm = OpenAIClient(model="gpt-4o-mini", api_key="sk-...")
 ```
@@ -172,8 +172,8 @@ Pass the client to `Agent(llm=llm, ...)`. `BackendConfig` is optional metadata o
 Each `Agent` has its own `ConversationMemory`. Messages accumulate across `run()` calls on the same instance.
 
 ```python
-from maxxa_agent.core.config import AgentConfig, MemoryConfig
-from maxxa_agent.core.memory import ConversationMemory
+from maxx_agent.core.config import AgentConfig, MemoryConfig
+from maxx_agent.core.memory import ConversationMemory
 
 memory = ConversationMemory(window_size=10)
 

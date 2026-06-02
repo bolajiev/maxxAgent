@@ -15,8 +15,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict, dataclass
 from enum import Enum
 
-from maxxa_agent.multi_agent.crew import Crew
-from maxxa_agent.multi_agent.task import Task, TaskResult
+from maxx_agent.multi_agent.crew import Crew
+from maxx_agent.multi_agent.task import Task, TaskResult
 
 
 class CoordinationMode(str, Enum):

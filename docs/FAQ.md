@@ -18,7 +18,7 @@ CrewAI and LangGraph excel at graph orchestration and large ecosystems. MaxxAgen
 **Yes.** Implement or use `CustomEndpointClient` with any HTTP server that accepts a prompt and returns text.
 
 ```python
-from maxxa_agent.backends.llm_client import CustomEndpointClient
+from maxx_agent.backends.llm_client import CustomEndpointClient
 
 llm = CustomEndpointClient(endpoint_url="http://your-maxx-server/generate")
 ```

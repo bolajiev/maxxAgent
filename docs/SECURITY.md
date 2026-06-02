@@ -113,7 +113,7 @@ If you discover a security vulnerability, please report it responsibly to the pr
 ## Related configuration
 
 ```python
-from maxxa_agent.core.config import AgentConfig, ToolConfig
+from maxx_agent.core.config import AgentConfig, ToolConfig
 
 AgentConfig(
     tools=ToolConfig(

@@ -7,29 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-
-- (List new features here)
-
 ### Changed
 
-- (List changes in existing functionality)
-
-### Deprecated
-
-- (List soon-to-be removed features)
-
-### Removed
-
-- (List removed features)
-
-### Fixed
-
-- (List bug fixes)
-
-### Security
-
-- (List security fixes)
+- Renamed Python package `maxxa_agent` → `maxx_agent` (cleaner import: `from maxx_agent import Agent`)
+- PyPI/distribution name: `maxx-agent`
+- Public API exports from `maxx_agent` root and `maxx_agent.backends`
+- README: CI badge, tagline, top-of-page code sample
 
 ---
 

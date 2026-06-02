@@ -14,7 +14,7 @@ For incremental upgrade ideas from early development, see also [../plan.md](../p
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Core ReAct agent + tool registry | Done | `maxxa_agent/core/` |
+| Core ReAct agent + tool registry | Done | `maxx_agent/core/` |
 | LLM backends (HF, OpenAI, custom HTTP) | Done | `backends/llm_client.py` |
 | Multi-agent Crew + Orchestrator | Done | `multi_agent/` |
 | RAG loader + in-memory retriever | Done | `rag/` |
@@ -71,7 +71,7 @@ For incremental upgrade ideas from early development, see also [../plan.md](../p
 
 | Item | Description |
 |------|-------------|
-| CLI | `maxxa run "prompt"` |
+| CLI | `maxx run "prompt"` |
 | HTTP API server | FastAPI agent endpoint |
 | Web UI | Optional chat/debug UI |
 | Performance | Prompt caching, batch tool calls where safe |

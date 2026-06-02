@@ -7,7 +7,7 @@ hardcode URLs or API keys in application code.
 
 Example::
 
-    from maxxa_agent.settings import load_env_file, llm_endpoint_url
+    from maxx_agent.settings import load_env_file, llm_endpoint_url
 
     load_env_file()  # optional, if python-dotenv is installed
     url = llm_endpoint_url()

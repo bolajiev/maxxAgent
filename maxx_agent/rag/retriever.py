@@ -20,7 +20,7 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any, Protocol
 
-from maxxa_agent.rag.loader import DocumentChunk
+from maxx_agent.rag.loader import DocumentChunk
 
 
 class Embedder(Protocol):

@@ -43,7 +43,7 @@ When describing your experimental setup, you may reference these architectural e
 Record for your paper or appendix:
 
 - Python version (3.10+)
-- Package version: `import maxxa_agent; print(maxxa_agent.__version__)`
+- Package version: `import maxx_agent; print(maxx_agent.__version__)`
 - LLM backend and model identifier
 - `AgentConfig` settings (`max_steps`, `temperature`, tool flags)
 - Commit hash or release tag

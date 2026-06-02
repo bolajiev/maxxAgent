@@ -11,8 +11,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from maxxa_agent.rag.loader import Document, TextSplitter
-from maxxa_agent.rag.retriever import LocalHashEmbedder, Retriever
+from maxx_agent.rag.loader import Document, TextSplitter
+from maxx_agent.rag.retriever import LocalHashEmbedder, Retriever
 
 
 def main() -> None:

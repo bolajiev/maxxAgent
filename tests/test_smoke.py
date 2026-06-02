@@ -6,16 +6,16 @@ import subprocess
 import sys
 
 import pytest
-from maxxa_agent.core.tools import ToolRegistry, ToolResult, ToolRunStatus, ToolSpec
-from maxxa_agent.execution.sandbox import SandboxedPythonExecutor
-from maxxa_agent.rag.loader import Document, TextSplitter
-from maxxa_agent.rag.retriever import LocalHashEmbedder, Retriever
+from maxx_agent.core.tools import ToolRegistry, ToolResult, ToolRunStatus, ToolSpec
+from maxx_agent.execution.sandbox import SandboxedPythonExecutor
+from maxx_agent.rag.loader import Document, TextSplitter
+from maxx_agent.rag.retriever import LocalHashEmbedder, Retriever
 
 
 def test_package_version() -> None:
-    import maxxa_agent
+    import maxx_agent
 
-    assert maxxa_agent.__version__ == "0.1.0"
+    assert maxx_agent.__version__ == "0.1.0"
 
 
 def test_tool_registry_custom_tool() -> None:

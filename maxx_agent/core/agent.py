@@ -16,10 +16,10 @@ import re
 from dataclasses import dataclass
 from typing import Any
 
-from maxxa_agent.backends.llm_client import LLMClient
-from maxxa_agent.core.config import AgentConfig
-from maxxa_agent.core.memory import ConversationMemory, Message
-from maxxa_agent.core.tools import ToolRegistry, ToolResult, ToolRunOptions, ToolRunStatus
+from maxx_agent.backends.llm_client import LLMClient
+from maxx_agent.core.config import AgentConfig
+from maxx_agent.core.memory import ConversationMemory, Message
+from maxx_agent.core.tools import ToolRegistry, ToolResult, ToolRunOptions, ToolRunStatus
 
 
 class AgentParseError(RuntimeError):

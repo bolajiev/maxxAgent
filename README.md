@@ -1,8 +1,30 @@
-# MaxxAgentFramework
+# Maxx Agent Framework
+
+[![Tests](https://github.com/bolajiev/maxxAgent/actions/workflows/tests.yml/badge.svg)](https://github.com/bolajiev/maxxAgent/actions/workflows/tests.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Code style: Ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
 
 **Repository:** [github.com/bolajiev/maxxAgent](https://github.com/bolajiev/maxxAgent)
 
-**MaxxAgentFramework** is an open-source Python framework for building **stateful, tool-using AI agents**. It provides a transparent ReAct-style loop (`Thought → Action → Observation → Final Answer`), a safe tool registry with JSON Schema validation, pluggable LLM backends (Hugging Face, OpenAI, or any custom HTTP endpoint), multi-agent crews, retrieval-augmented generation (RAG), and sandboxed code execution. Version **0.1** is a framework preview for integrators — not a hosted product.
+> **Build agents that think, act, and remember.**  
+> ReAct loop · JSON-schema tools · multi-agent crews · RAG · plug in your **Maxx** model via HTTP.
+
+**Maxx Agent Framework** is an open-source Python library for **stateful, tool-using AI agents**. It provides a transparent ReAct-style loop (`Thought → Action → Observation → Final Answer`), a safe tool registry with JSON Schema validation, pluggable LLM backends (Hugging Face, OpenAI, or any custom HTTP endpoint), multi-agent crews, retrieval-augmented generation (RAG), and sandboxed code execution. Version **0.1** is a framework preview for integrators — not a hosted product.
+
+```python
+from maxx_agent import Agent, AgentConfig, ToolRegistry
+from maxx_agent.backends import CustomEndpointClient
+from maxx_agent.settings import load_env_file, llm_endpoint_url
+
+load_env_file()
+agent = Agent(
+    llm=CustomEndpointClient(endpoint_url=llm_endpoint_url()),
+    config=AgentConfig(max_steps=10),
+    tools=ToolRegistry.with_builtins(workspace_root="."),
+)
+print(agent.run("What can you do?"))
+```
 
 ## Key features
 
@@ -63,11 +85,9 @@ Full list: [.env.example](.env.example) · [docs/DEVELOPMENT.md](docs/DEVELOPMEN
 ### 3. Run an agent
 
 ```python
-from maxxa_agent.backends.llm_client import CustomEndpointClient
-from maxxa_agent.core.agent import Agent
-from maxxa_agent.core.config import AgentConfig, ToolConfig
-from maxxa_agent.core.tools import ToolRegistry
-from maxxa_agent.settings import load_env_file, llm_auth_headers, llm_endpoint_url, llm_request_timeout_s, workspace_root
+from maxx_agent import Agent, AgentConfig, ToolRegistry
+from maxx_agent.backends import CustomEndpointClient
+from maxx_agent.settings import load_env_file, llm_auth_headers, llm_endpoint_url, llm_request_timeout_s, workspace_root
 
 load_env_file()  # no-op if python-dotenv not installed
 
@@ -117,7 +137,7 @@ Deep dive: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 | Hugging Face Inference | `HFInferenceClient` | core |
 | OpenAI | `OpenAIClient` | `pip install -e ".[openai]"` |
 
-See [docs/API_REFERENCE.md](docs/API_REFERENCE.md#maxxa_agentbackendsllm_client).
+See [docs/API_REFERENCE.md](docs/API_REFERENCE.md#maxx_agentbackendsllm_client).
 
 ## Safety and security
 

@@ -13,9 +13,9 @@ from typing import Any
 
 import httpx
 
-from maxxa_agent.core.tools import ToolRegistry, ToolResult, ToolRunStatus, ToolSpec
-from maxxa_agent.execution.sandbox import SandboxedPythonExecutor
-from maxxa_agent.rag.retriever import Retriever
+from maxx_agent.core.tools import ToolRegistry, ToolResult, ToolRunStatus, ToolSpec
+from maxx_agent.execution.sandbox import SandboxedPythonExecutor
+from maxx_agent.rag.retriever import Retriever
 
 
 def _safe_join(root: str, rel: str) -> str:

@@ -50,7 +50,7 @@ This document defines what **quality** means for MaxxAgentFramework and how we m
 When tests land, run:
 
 ```bash
-pytest --cov=maxxa_agent --cov-report=term-missing
+pytest --cov=maxx_agent --cov-report=term-missing
 ```
 
 ---

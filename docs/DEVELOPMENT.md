@@ -33,13 +33,13 @@ Edit `.env` with your Maxx endpoint URL, API keys, and tool flags. See [.env.exa
 Use the settings helper (reads the same variable names as `.env.example`):
 
 ```python
-from maxxa_agent.settings import load_env_file, llm_endpoint_url
+from maxx_agent.settings import load_env_file, llm_endpoint_url
 
 load_env_file()  # requires: pip install python-dotenv
 print(llm_endpoint_url())
 ```
 
-Or read `os.environ` directly. See [maxxa_agent/settings.py](../maxxa_agent/settings.py).
+Or read `os.environ` directly. See [maxx_agent/settings.py](../maxx_agent/settings.py).
 
 ## Running examples
 
@@ -77,7 +77,7 @@ Expected commands:
 ```bash
 pip install pytest pytest-cov
 pytest
-pytest --cov=maxxa_agent --cov-report=term-missing
+pytest --cov=maxx_agent --cov-report=term-missing
 ```
 
 Until tests exist, validate manually by running all examples.
@@ -87,7 +87,7 @@ Until tests exist, validate manually by running all examples.
 1. **Define the handler** — accept `dict[str, Any]`, return `ToolResult`.
 
 ```python
-from maxxa_agent.core.tools import ToolResult, ToolRunStatus
+from maxx_agent.core.tools import ToolResult, ToolRunStatus
 
 def my_tool(args: dict) -> ToolResult:
     try:
@@ -102,7 +102,7 @@ def my_tool(args: dict) -> ToolResult:
 3. **Create `ToolSpec`** and register:
 
 ```python
-from maxxa_agent.core.tools import ToolSpec, ToolRegistry
+from maxx_agent.core.tools import ToolSpec, ToolRegistry
 
 registry.register(
     ToolSpec(
@@ -144,7 +144,7 @@ Pass an instance to `Agent(llm=MyBackend())`.
 
 Document request/response format in [API_REFERENCE.md](API_REFERENCE.md).
 
-Reference implementations: [`maxxa_agent/backends/llm_client.py`](../maxxa_agent/backends/llm_client.py).
+Reference implementations: [`maxx_agent/backends/llm_client.py`](../maxx_agent/backends/llm_client.py).
 
 ## Code style
 
@@ -158,9 +158,9 @@ Reference implementations: [`maxxa_agent/backends/llm_client.py`](../maxxa_agent
 
 ```bash
 pip install black isort mypy
-black maxxa_agent examples
-isort maxxa_agent examples
-mypy maxxa_agent
+black maxx_agent examples
+isort maxx_agent examples
+mypy maxx_agent
 ```
 
 Conventions:
@@ -180,7 +180,7 @@ Conventions:
 
 ## Release checklist
 
-- [ ] Version bump in `pyproject.toml` and `maxxa_agent/__init__.py`
+- [ ] Version bump in `pyproject.toml` and `maxx_agent/__init__.py`
 - [ ] README and docs reviewed
 - [ ] Examples run clean
 - [ ] LICENSE unchanged unless intentionally updated
@@ -202,7 +202,7 @@ Keep docs in sync with code:
 ## Project layout
 
 ```text
-maxxa_agent/
+maxx_agent/
   core/          # Agent, tools, memory, config
   backends/      # LLM clients
   multi_agent/   # Crew, Task, Orchestrator

@@ -11,10 +11,10 @@
 Each agent is a core `Agent` with its own tools, memory, and system prompt:
 
 ```python
-from maxxa_agent.core.agent import Agent
-from maxxa_agent.multi_agent.crew import AgentDefinition, Crew
-from maxxa_agent.multi_agent.orchestrator import Orchestrator
-from maxxa_agent.multi_agent.task import Task
+from maxx_agent.core.agent import Agent
+from maxx_agent.multi_agent.crew import AgentDefinition, Crew
+from maxx_agent.multi_agent.orchestrator import Orchestrator
+from maxx_agent.multi_agent.task import Task
 
 researcher = AgentDefinition(
     name="Researcher",
@@ -65,8 +65,8 @@ print(result.aggregated_output)
 ### Build an index
 
 ```python
-from maxxa_agent.rag.loader import Document, DocumentLoader, TextSplitter
-from maxxa_agent.rag.retriever import LocalHashEmbedder, Retriever
+from maxx_agent.rag.loader import Document, DocumentLoader, TextSplitter
+from maxx_agent.rag.retriever import LocalHashEmbedder, Retriever
 
 loader = DocumentLoader()
 doc = loader.load_text_file("README.md")
@@ -79,8 +79,8 @@ retriever.add_chunks(chunks)
 ### Wire into tools
 
 ```python
-from maxxa_agent.core.tools import ToolRegistry
-from maxxa_agent.tools.advanced_tools import register_advanced_tools
+from maxx_agent.core.tools import ToolRegistry
+from maxx_agent.tools.advanced_tools import register_advanced_tools
 
 registry = ToolRegistry()
 register_advanced_tools(
@@ -121,7 +121,7 @@ For production, use a real embedding API (OpenAI, HF, local model) by implementi
 **Implemented:** `SandboxedPythonExecutor` and `execute_code` / `code_execution` tools.
 
 ```python
-from maxxa_agent.execution.sandbox import SandboxedPythonExecutor
+from maxx_agent.execution.sandbox import SandboxedPythonExecutor
 
 executor = SandboxedPythonExecutor(workspace_root="./workspace", timeout_s=5.0)
 result = executor.run("print(sum(range(10)))")
@@ -143,7 +143,7 @@ print(result.stdout)
 Enable dangerous tools only when needed:
 
 ```python
-from maxxa_agent.core.config import AgentConfig, ToolConfig
+from maxx_agent.core.config import AgentConfig, ToolConfig
 
 config = AgentConfig(
     tools=ToolConfig(
@@ -171,7 +171,7 @@ See [Security](SECURITY.md).
 
 ```python
 import httpx
-from maxxa_agent.core.tools import ToolSpec, ToolResult, ToolRunStatus
+from maxx_agent.core.tools import ToolSpec, ToolResult, ToolRunStatus
 
 def fetch_json(args: dict) -> ToolResult:
     url = args["url"]

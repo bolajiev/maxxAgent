@@ -18,12 +18,12 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from maxxa_agent.core.agent import Agent
-from maxxa_agent.core.config import AgentConfig, BackendConfig
-from maxxa_agent.core.tools import ToolRegistry
-from maxxa_agent.multi_agent.crew import AgentDefinition, Crew
-from maxxa_agent.multi_agent.orchestrator import Orchestrator
-from maxxa_agent.multi_agent.task import Task
+from maxx_agent.core.agent import Agent
+from maxx_agent.core.config import AgentConfig, BackendConfig
+from maxx_agent.core.tools import ToolRegistry
+from maxx_agent.multi_agent.crew import AgentDefinition, Crew
+from maxx_agent.multi_agent.orchestrator import Orchestrator
+from maxx_agent.multi_agent.task import Task
 
 
 @dataclass(frozen=True, slots=True)

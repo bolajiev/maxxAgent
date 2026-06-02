@@ -2,7 +2,7 @@
 
 **Related:** [Getting Started](GETTING_STARTED.md) · [API Reference](API_REFERENCE.md) · [Security](SECURITY.md)
 
-## `ModuleNotFoundError: No module named 'maxxa_agent'`
+## `ModuleNotFoundError: No module named 'maxx_agent'`
 
 **Cause:** Package not installed and example run from wrong directory.
 
@@ -82,7 +82,7 @@ print(trace.steps[-1].raw_model_output)
 **Fix:**
 
 ```python
-from maxxa_agent.core.config import AgentConfig, ToolConfig
+from maxx_agent.core.config import AgentConfig, ToolConfig
 
 AgentConfig(tools=ToolConfig(allow_dangerous_tools=True))
 ```

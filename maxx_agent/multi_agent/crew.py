@@ -5,7 +5,7 @@ The Crew owns:
 - multiple agent definitions (name/role/system_prompt/tools/memory)
 - delegation support (agents can ask other agents for help)
 
-The underlying execution unit is the core `maxxa_agent.core.agent.Agent`.
+The underlying execution unit is the core `maxx_agent.core.agent.Agent`.
 """
 
 from __future__ import annotations
@@ -14,11 +14,11 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from typing import Any
 
-from maxxa_agent.core.agent import Agent
-from maxxa_agent.core.config import AgentConfig
-from maxxa_agent.core.memory import ConversationMemory
-from maxxa_agent.core.tools import ToolResult, ToolRunStatus, ToolSpec
-from maxxa_agent.multi_agent.task import Task, TaskResult
+from maxx_agent.core.agent import Agent
+from maxx_agent.core.config import AgentConfig
+from maxx_agent.core.memory import ConversationMemory
+from maxx_agent.core.tools import ToolResult, ToolRunStatus, ToolSpec
+from maxx_agent.multi_agent.task import Task, TaskResult
 
 
 @dataclass(frozen=True, slots=True)

@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "maxxa-agent"
+name = "maxx-agent"
 version = "0.1.0"
 description = "MaxxAgentFramework: an open-source agentic AI framework with ReAct reasoning, tools, and multi-agent orchestration."
 readme = "README.md"
@@ -64,7 +64,7 @@ package-dir = { "" = "." }
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["maxxa_agent*"]
+include = ["maxx_agent*"]
 
 [tool.pytest.ini_options]
 minversion = "8.0"
@@ -81,7 +81,7 @@ markers = [
 
 [tool.coverage.run]
 branch = true
-source = ["maxxa_agent"]
+source = ["maxx_agent"]
 omit = ["tests/*"]
 
 [tool.coverage.report]
@@ -96,12 +96,12 @@ warn_unused_configs = true
 disallow_untyped_defs = false
 check_untyped_defs = true
 ignore_missing_imports = true
-packages = ["maxxa_agent"]
+packages = ["maxx_agent"]
 
 [tool.ruff]
 target-version = "py310"
 line-length = 120
-src = ["maxxa_agent", "tests", "examples"]
+src = ["maxx_agent", "tests", "examples"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
