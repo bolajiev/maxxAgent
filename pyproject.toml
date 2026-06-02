@@ -1,0 +1,108 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maxxa-agent"
+version = "0.1.0"
+description = "MaxxAgentFramework: an open-source agentic AI framework with ReAct reasoning, tools, and multi-agent orchestration."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "MaxxAgentFramework contributors" }]
+maintainers = [{ name = "MaxxAgentFramework contributors" }]
+keywords = [
+  "agents",
+  "llm",
+  "react",
+  "tools",
+  "multi-agent",
+  "rag",
+  "framework",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+dependencies = [
+  "httpx>=0.27,<1",
+  "jsonschema>=4.22,<5",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.40,<2"]
+dev = [
+  "pytest>=8.0,<9",
+  "pytest-cov>=5.0,<6",
+  "mypy>=1.10,<2",
+  "ruff>=0.4,<1",
+  "python-dotenv>=1.0,<2",
+]
+env = [
+  "python-dotenv>=1.0,<2",
+]
+
+[project.urls]
+Homepage = "https://github.com/bolajiev/maxxAgent"
+Documentation = "https://github.com/bolajiev/maxxAgent/tree/main/docs"
+Repository = "https://github.com/bolajiev/maxxAgent"
+Issues = "https://github.com/bolajiev/maxxAgent/issues"
+Changelog = "https://github.com/bolajiev/maxxAgent/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+package-dir = { "" = "." }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["maxxa_agent*"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = [
+  "-ra",
+  "--strict-markers",
+  "--strict-config",
+]
+markers = [
+  "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["maxxa_agent"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+fail_under = 0
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+check_untyped_defs = true
+ignore_missing_imports = true
+packages = ["maxxa_agent"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+src = ["maxxa_agent", "tests", "examples"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["B008"]

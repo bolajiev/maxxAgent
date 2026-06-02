@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Packaging / install artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# Tests & coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+
+# Type checkers / linters
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+
+# Environment & secrets (never commit real values)
+.env
+.env.local
+.env.*.local
+secrets.json
+*.pem
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Cursor / local tooling
+.cursor/
+
+# Logs & temp
+*.log
+tmp/
+temp/
+
+# Workspace outputs (agent file tools / sandbox)
+workspace/
+.agent_runs/
