@@ -8,9 +8,10 @@ Swap `ScriptedLLM()` for a real backend (OpenAI/HF/custom endpoint) to go live.
 from __future__ import annotations
 
 import sys
-from pathlib import Path
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Any, Mapping, Optional
+from pathlib import Path
+from typing import Any
 
 # Allow running from a source checkout without installation.
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -39,9 +40,9 @@ class ScriptedLLM:
         prompt: str,
         *,
         temperature: float = 0.2,
-        max_tokens: Optional[int] = None,
-        stop: Optional[list[str]] = None,
-        extra: Optional[Mapping[str, Any]] = None,
+        max_tokens: int | None = None,
+        stop: list[str] | None = None,
+        extra: Mapping[str, Any] | None = None,
     ) -> str:
         role = "generalist"
         if "ROLE: Researcher" in prompt:

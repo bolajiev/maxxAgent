@@ -9,8 +9,9 @@ from __future__ import annotations
 
 import time
 import uuid
+from collections.abc import Mapping
 from dataclasses import dataclass, field
-from typing import Any, Mapping, Optional
+from typing import Any
 
 
 @dataclass(frozen=True, slots=True)
@@ -31,7 +32,7 @@ class Task:
     assigned_agent: str
     task_id: str = field(default_factory=lambda: str(uuid.uuid4()))
     created_at_s: float = field(default_factory=lambda: time.time())
-    context: Optional[Any] = None
+    context: Any | None = None
     metadata: Mapping[str, Any] = field(default_factory=dict)
 
 
@@ -54,7 +55,7 @@ class TaskResult:
     agent_name: str
     output: str
     success: bool = True
-    error: Optional[str] = None
+    error: str | None = None
     artifacts: dict[str, Any] = field(default_factory=dict)
     metadata: dict[str, Any] = field(default_factory=dict)
 

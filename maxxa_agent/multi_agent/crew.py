@@ -10,8 +10,9 @@ The underlying execution unit is the core `maxxa_agent.core.agent.Agent`.
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Any, Iterable, Optional
+from typing import Any
 
 from maxxa_agent.core.agent import Agent
 from maxxa_agent.core.config import AgentConfig
@@ -137,7 +138,7 @@ def make_agent_definition(
     name: str,
     role: str,
     base_agent: Agent,
-    system_prompt: Optional[str] = None,
+    system_prompt: str | None = None,
 ) -> AgentDefinition:
     """
     Convenience helper to specialize an existing Agent instance.

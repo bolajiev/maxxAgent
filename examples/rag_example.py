@@ -22,7 +22,10 @@ def main() -> None:
             source="doc:react",
         ),
         Document(
-            text="RAG (retrieval augmented generation) retrieves relevant chunks from a knowledge base before answering.",
+            text=(
+                "RAG (retrieval augmented generation) retrieves relevant chunks "
+                "from a knowledge base before answering."
+            ),
             source="doc:rag",
         ),
         Document(

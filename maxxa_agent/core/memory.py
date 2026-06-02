@@ -10,9 +10,9 @@ This module provides a conversation memory store with:
 from __future__ import annotations
 
 import time
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
-from typing import Any, Callable, Iterable, Mapping, MutableMapping, Optional, Sequence
-
+from typing import Any
 
 Role = str  # e.g. "system", "user", "assistant", "tool"
 
@@ -48,7 +48,7 @@ class ConversationMemory:
         self,
         *,
         window_size: int = 5,
-        summarizer: Optional[SummarizerHook] = None,
+        summarizer: SummarizerHook | None = None,
         summary_trigger_count: int = 30,
     ) -> None:
         if window_size <= 0:
@@ -59,7 +59,7 @@ class ConversationMemory:
         self._messages: list[Message] = []
         self._summarizer = summarizer
         self._summary_trigger_count = summary_trigger_count
-        self._summary: Optional[str] = None
+        self._summary: str | None = None
         self._last_summarized_index: int = 0
 
     @property
@@ -67,10 +67,10 @@ class ConversationMemory:
         return self._window_size
 
     @property
-    def summary(self) -> Optional[str]:
+    def summary(self) -> str | None:
         return self._summary
 
-    def set_summarizer(self, summarizer: Optional[SummarizerHook]) -> None:
+    def set_summarizer(self, summarizer: SummarizerHook | None) -> None:
         self._summarizer = summarizer
 
     def add(self, message: Message) -> None:

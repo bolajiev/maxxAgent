@@ -19,10 +19,10 @@ import os
 import subprocess
 import sys
 import time
-import urllib.parse
+from collections.abc import Callable, Mapping, MutableMapping
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Callable, Mapping, MutableMapping, Optional
+from typing import Any
 
 import httpx
 from jsonschema import Draft202012Validator
@@ -102,12 +102,12 @@ class ToolResult:
 
     result: Any = None
     status: ToolRunStatus = ToolRunStatus.OK
-    error: Optional[str] = None
+    error: str | None = None
     metadata: MutableMapping[str, Any] = field(default_factory=dict)
 
     # Optional captured streams (useful for `code_execution`-style tools)
-    stdout: Optional[str] = None
-    stderr: Optional[str] = None
+    stdout: str | None = None
+    stderr: str | None = None
 
     def to_json(self) -> JsonDict:
         return {
@@ -124,12 +124,12 @@ class ToolResult:
 class ToolRunOptions:
     """Execution options applied at runtime."""
 
-    timeout_s: Optional[float] = None
+    timeout_s: float | None = None
     max_output_chars: int = 50_000
     allow_dangerous_tools: bool = False
 
 
-def _truncate_text(text: Optional[str], max_chars: int) -> tuple[Optional[str], bool]:
+def _truncate_text(text: str | None, max_chars: int) -> tuple[str | None, bool]:
     if text is None:
         return None, False
     if max_chars <= 0:
@@ -159,9 +159,9 @@ class ToolRegistry:
     def with_builtins(
         cls,
         *,
-        workspace_root: Optional[str] = None,
+        workspace_root: str | None = None,
         enable_code_execution: bool = False,
-    ) -> "ToolRegistry":
+    ) -> ToolRegistry:
         """
         Create a registry preloaded with built-in tools.
 
@@ -213,7 +213,7 @@ class ToolRegistry:
         tool_name: str,
         args: Any,
         *,
-        options: Optional[ToolRunOptions] = None,
+        options: ToolRunOptions | None = None,
     ) -> ToolResult:
         """
         Validate and execute a tool.
@@ -394,7 +394,7 @@ def _safe_join(root: str, rel_path: str) -> str:
     return candidate
 
 
-def _builtin_file_ops(*, workspace_root: Optional[str]) -> ToolSpec:
+def _builtin_file_ops(*, workspace_root: str | None) -> ToolSpec:
     root = os.path.abspath(workspace_root or os.getcwd())
 
     def handler(args: JsonDict) -> ToolResult:
@@ -407,7 +407,7 @@ def _builtin_file_ops(*, workspace_root: Optional[str]) -> ToolSpec:
 
         try:
             if op == "read_text":
-                with open(safe_path, "r", encoding="utf-8", errors="replace") as f:
+                with open(safe_path, encoding="utf-8", errors="replace") as f:
                     text = f.read()
                 text, truncated = _truncate_text(text, int(args.get("max_chars", 200_000)))
                 return ToolResult(result={"text": text}, metadata={"path": path, "truncated": truncated})

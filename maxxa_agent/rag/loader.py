@@ -12,8 +12,8 @@ from __future__ import annotations
 
 import os
 import re
+from collections.abc import Mapping
 from dataclasses import dataclass, field
-from typing import Iterable, Mapping, Optional
 
 import httpx
 
@@ -46,7 +46,7 @@ class DocumentLoader:
         self.max_chars = max_chars
 
     def load_text_file(self, path: str, *, encoding: str = "utf-8") -> Document:
-        with open(path, "r", encoding=encoding, errors="replace") as f:
+        with open(path, encoding=encoding, errors="replace") as f:
             text = f.read(self.max_chars + 1)
         if len(text) > self.max_chars:
             text = text[: self.max_chars - 1] + "…"
@@ -78,7 +78,7 @@ class TextSplitter:
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
 
-    def split(self, doc: Document, *, prefix_id: Optional[str] = None) -> list[DocumentChunk]:
+    def split(self, doc: Document, *, prefix_id: str | None = None) -> list[DocumentChunk]:
         normalized = _normalize_text(doc.text)
         units = _split_units(normalized)
 

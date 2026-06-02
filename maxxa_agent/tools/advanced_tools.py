@@ -9,14 +9,13 @@ from __future__ import annotations
 import os
 import time
 from dataclasses import dataclass
-from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import httpx
 
+from maxxa_agent.core.tools import ToolRegistry, ToolResult, ToolRunStatus, ToolSpec
 from maxxa_agent.execution.sandbox import SandboxedPythonExecutor
 from maxxa_agent.rag.retriever import Retriever
-from maxxa_agent.core.tools import ToolResult, ToolRunStatus, ToolSpec, ToolRegistry
 
 
 def _safe_join(root: str, rel: str) -> str:
@@ -32,7 +31,7 @@ def read_file_tool(*, workspace_root: str, max_chars: int = 200_000) -> ToolSpec
         path = args["path"]
         try:
             safe = _safe_join(workspace_root, path)
-            with open(safe, "r", encoding="utf-8", errors="replace") as f:
+            with open(safe, encoding="utf-8", errors="replace") as f:
                 txt = f.read(max_chars + 1)
             truncated = len(txt) > max_chars
             if truncated:
@@ -95,7 +94,10 @@ def list_files_tool(*, workspace_root: str, max_entries: int = 2000) -> ToolSpec
                 if len(entries) >= max_entries:
                     break
             entries.sort()
-            return ToolResult(result={"entries": entries}, metadata={"path": rel, "truncated": len(entries) >= max_entries})
+            return ToolResult(
+                result={"entries": entries},
+                metadata={"path": rel, "truncated": len(entries) >= max_entries},
+            )
         except Exception as e:  # noqa: BLE001
             return ToolResult(status=ToolRunStatus.ERROR, error=f"{type(e).__name__}: {e}")
 
@@ -205,7 +207,10 @@ def query_knowledge_base_tool(*, retriever: Retriever) -> ToolSpec:
         description="Semantic search over the agent's knowledge base (RAG).",
         args_schema={
             "type": "object",
-            "properties": {"query": {"type": "string", "minLength": 1}, "top_k": {"type": "integer", "minimum": 1, "maximum": 20}},
+            "properties": {
+                "query": {"type": "string", "minLength": 1},
+                "top_k": {"type": "integer", "minimum": 1, "maximum": 20},
+            },
             "required": ["query"],
             "additionalProperties": False,
         },
@@ -218,9 +223,9 @@ def register_advanced_tools(
     registry: ToolRegistry,
     *,
     workspace_root: str,
-    retriever: Optional[Retriever] = None,
+    retriever: Retriever | None = None,
     enable_execution: bool = True,
-    web_search_endpoint_url: Optional[str] = None,
+    web_search_endpoint_url: str | None = None,
 ) -> None:
     """
     Register advanced tools into a registry.

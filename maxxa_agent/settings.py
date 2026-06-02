@@ -16,7 +16,7 @@ Example::
 from __future__ import annotations
 
 import os
-from typing import Mapping, Optional
+from collections.abc import Mapping
 
 
 def load_env_file(path: str = ".env") -> bool:
@@ -68,12 +68,12 @@ def llm_request_timeout_s() -> float:
     return _env_float("MAXX_LLM_REQUEST_TIMEOUT_S", 60.0)
 
 
-def llm_api_key() -> Optional[str]:
+def llm_api_key() -> str | None:
     key = os.environ.get("MAXX_LLM_API_KEY")
     return key if key and key.strip() else None
 
 
-def llm_auth_headers() -> Optional[Mapping[str, str]]:
+def llm_auth_headers() -> Mapping[str, str] | None:
     key = llm_api_key()
     if not key:
         return None
@@ -92,7 +92,7 @@ def enable_code_execution() -> bool:
     return _env_bool("MAXX_ENABLE_CODE_EXECUTION", False)
 
 
-def web_search_endpoint_url() -> Optional[str]:
+def web_search_endpoint_url() -> str | None:
     url = os.environ.get("MAXX_WEB_SEARCH_ENDPOINT_URL")
     return url if url and url.strip() else None
 

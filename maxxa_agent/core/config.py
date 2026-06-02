@@ -7,8 +7,9 @@ and the Agent/ToolRegistry/backends can consume them without hidden globals.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass, field
-from typing import Any, Mapping, Optional
+from typing import Any
 
 
 @dataclass(frozen=True, slots=True)

@@ -6,8 +6,7 @@ import subprocess
 import sys
 
 import pytest
-
-from maxxa_agent.core.tools import ToolRegistry, ToolResult, ToolSpec, ToolRunStatus
+from maxxa_agent.core.tools import ToolRegistry, ToolResult, ToolRunStatus, ToolSpec
 from maxxa_agent.execution.sandbox import SandboxedPythonExecutor
 from maxxa_agent.rag.loader import Document, TextSplitter
 from maxxa_agent.rag.retriever import LocalHashEmbedder, Retriever

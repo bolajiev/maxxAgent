@@ -16,8 +16,9 @@ from __future__ import annotations
 
 import math
 import re
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
-from typing import Any, Iterable, Mapping, Optional, Protocol, Sequence
+from typing import Any, Protocol
 
 from maxxa_agent.rag.loader import DocumentChunk
 
@@ -85,7 +86,7 @@ class Retriever:
         self,
         *,
         embedder: Embedder,
-        store: Optional[InMemoryVectorStore] = None,
+        store: InMemoryVectorStore | None = None,
     ) -> None:
         self.embedder = embedder
         self.store = store or InMemoryVectorStore()

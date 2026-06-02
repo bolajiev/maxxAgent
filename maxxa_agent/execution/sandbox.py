@@ -20,7 +20,6 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional
 
 
 @dataclass(slots=True)
@@ -37,7 +36,7 @@ class ExecutionResult:
             self.metadata = {}
 
 
-def _truncate(text: Optional[str], max_chars: int) -> tuple[str, bool]:
+def _truncate(text: str | None, max_chars: int) -> tuple[str, bool]:
     t = text or ""
     if max_chars <= 0:
         return "", True

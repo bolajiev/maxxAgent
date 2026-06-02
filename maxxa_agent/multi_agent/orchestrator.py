@@ -10,10 +10,10 @@ Patterns supported:
 
 from __future__ import annotations
 
+from collections.abc import Callable, Sequence
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict, dataclass
 from enum import Enum
-from typing import Callable, Iterable, Optional, Sequence
 
 from maxxa_agent.multi_agent.crew import Crew
 from maxxa_agent.multi_agent.task import Task, TaskResult
@@ -55,7 +55,7 @@ class OrchestrationResult:
 class Orchestrator:
     """Executes Tasks against a Crew using a chosen coordination pattern."""
 
-    def __init__(self, *, crew: Crew, aggregator: Optional[Aggregator] = None) -> None:
+    def __init__(self, *, crew: Crew, aggregator: Aggregator | None = None) -> None:
         self.crew = crew
         self.aggregator: Aggregator = aggregator or default_aggregator
 
@@ -115,7 +115,7 @@ class Orchestrator:
         *,
         manager_task: Task,
         subtasks: Sequence[Task],
-        synthesis_agent: Optional[str] = None,
+        synthesis_agent: str | None = None,
         max_workers: int = 3,
     ) -> OrchestrationResult:
         """
@@ -125,7 +125,10 @@ class Orchestrator:
 
         If `synthesis_agent` is provided, it overrides `manager_task.assigned_agent`.
         """
-        sub_result = self.run_parallel(subtasks, max_workers=max_workers) if subtasks else OrchestrationResult([], "", CoordinationMode.PARALLEL)
+        if subtasks:
+            sub_result = self.run_parallel(subtasks, max_workers=max_workers)
+        else:
+            sub_result = OrchestrationResult([], "", CoordinationMode.PARALLEL)
 
         synth_task = Task(
             description=manager_task.description,

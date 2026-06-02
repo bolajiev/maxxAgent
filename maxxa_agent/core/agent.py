@@ -14,12 +14,12 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import Any
 
 from maxxa_agent.backends.llm_client import LLMClient
 from maxxa_agent.core.config import AgentConfig
 from maxxa_agent.core.memory import ConversationMemory, Message
-from maxxa_agent.core.tools import ToolRegistry, ToolRunOptions, ToolResult, ToolRunStatus
+from maxxa_agent.core.tools import ToolRegistry, ToolResult, ToolRunOptions, ToolRunStatus
 
 
 class AgentParseError(RuntimeError):
@@ -38,10 +38,10 @@ class StepLog:
     step: int
     prompt: str
     raw_model_output: str
-    thought: Optional[str]
-    action: Optional[dict[str, Any]]
-    observation: Optional[dict[str, Any]]
-    final_answer: Optional[str]
+    thought: str | None
+    action: dict[str, Any] | None
+    observation: dict[str, Any] | None
+    final_answer: str | None
 
 
 @dataclass(frozen=True, slots=True)
@@ -103,9 +103,9 @@ class Agent:
         self,
         *,
         llm: LLMClient,
-        config: Optional[AgentConfig] = None,
-        tools: Optional[ToolRegistry] = None,
-        memory: Optional[ConversationMemory] = None,
+        config: AgentConfig | None = None,
+        tools: ToolRegistry | None = None,
+        memory: ConversationMemory | None = None,
     ) -> None:
         self.llm = llm
         self.config = config or AgentConfig()

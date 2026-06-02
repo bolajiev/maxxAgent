@@ -100,9 +100,13 @@ packages = ["maxxa_agent"]
 
 [tool.ruff]
 target-version = "py310"
-line-length = 100
+line-length = 120
 src = ["maxxa_agent", "tests", "examples"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
 ignore = ["B008"]
+
+[tool.ruff.lint.per-file-ignores]
+# Examples adjust sys.path before importing the local package.
+"examples/*" = ["E402"]

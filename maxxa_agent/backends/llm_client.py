@@ -11,8 +11,9 @@ The Agent depends only on the `LLMClient` interface, not on any provider SDK.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Any, Mapping, Optional, Protocol
+from typing import Any, Protocol
 
 import httpx
 
@@ -25,9 +26,9 @@ class LLMClient(Protocol):
         prompt: str,
         *,
         temperature: float = 0.2,
-        max_tokens: Optional[int] = None,
-        stop: Optional[list[str]] = None,
-        extra: Optional[Mapping[str, Any]] = None,
+        max_tokens: int | None = None,
+        stop: list[str] | None = None,
+        extra: Mapping[str, Any] | None = None,
     ) -> str:
         """Generate a completion string for the given prompt."""
 
@@ -54,16 +55,16 @@ class CustomEndpointClient:
 
     endpoint_url: str
     request_timeout_s: float = 30.0
-    headers: Optional[Mapping[str, str]] = None
+    headers: Mapping[str, str] | None = None
 
     def generate(
         self,
         prompt: str,
         *,
         temperature: float = 0.2,
-        max_tokens: Optional[int] = None,
-        stop: Optional[list[str]] = None,
-        extra: Optional[Mapping[str, Any]] = None,
+        max_tokens: int | None = None,
+        stop: list[str] | None = None,
+        extra: Mapping[str, Any] | None = None,
     ) -> str:
         payload: dict[str, Any] = {
             "prompt": prompt,
@@ -118,9 +119,9 @@ class HFInferenceClient:
         prompt: str,
         *,
         temperature: float = 0.2,
-        max_tokens: Optional[int] = None,
-        stop: Optional[list[str]] = None,
-        extra: Optional[Mapping[str, Any]] = None,
+        max_tokens: int | None = None,
+        stop: list[str] | None = None,
+        extra: Mapping[str, Any] | None = None,
     ) -> str:
         url = f"https://api-inference.huggingface.co/models/{self.model_id}"
         headers = {"Authorization": f"Bearer {self.api_token}"}
@@ -166,8 +167,8 @@ class OpenAIClient:
     """
 
     model: str
-    api_key: Optional[str] = None
-    base_url: Optional[str] = None
+    api_key: str | None = None
+    base_url: str | None = None
     request_timeout_s: float = 30.0
 
     def generate(
@@ -175,9 +176,9 @@ class OpenAIClient:
         prompt: str,
         *,
         temperature: float = 0.2,
-        max_tokens: Optional[int] = None,
-        stop: Optional[list[str]] = None,
-        extra: Optional[Mapping[str, Any]] = None,
+        max_tokens: int | None = None,
+        stop: list[str] | None = None,
+        extra: Mapping[str, Any] | None = None,
     ) -> str:
         try:
             from openai import OpenAI  # type: ignore
